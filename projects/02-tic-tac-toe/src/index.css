@@ -38,12 +38,12 @@ body {
 
 .board h1 {
   color: #eee;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 }
 
 .board button {
-  padding: 8px 12px;
-  margin: 25px;
+  padding: 8px 5px;
+  margin: 12px;
   background: transparent;
   border: 2px solid #eee;
   color: #eee;

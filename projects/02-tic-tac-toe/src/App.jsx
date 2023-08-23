@@ -22,6 +22,10 @@ function App() {
     return turnFromStorage ?? TURNS.X
   })
 
+  // estado para saber si gano la ✖️ o la ⭕ 
+  const [winnerX, setWinnerX] = useState(0)
+  const [winnerO, setWinnerO] = useState(0)
+
   // null es que no hay ganador, false es que hay un empate
   const [winner, setWinner] = useState(null)
 
@@ -56,11 +60,16 @@ function App() {
 
       // revisamos si hay un ganador
       const newWinner = checkWinnerFrom(newBoard)
-      if (newWinner) {
+      if (newWinner === '✖️') {
         confetti()
         setWinner(newWinner)
+        setWinnerX(winnerX + 1)
       }else if (checkEndGame(newBoard)) {
         setWinner(false)
+      }else if (newWinner === '⭕') {
+        confetti()
+        setWinner(newWinner)
+        setWinnerO( winnerO + 1)
       }
   }
 
@@ -68,6 +77,7 @@ function App() {
   <main className='board'>
       <h1>Tic tac toe</h1>
       <button onClick={resetGame}>Reset del Juego</button>
+      <p>✖️: {winnerX} vs ⭕: {winnerO}</p>
       <section className='game'>
           {
             board.map((square,index)=> {
@@ -79,7 +89,6 @@ function App() {
                   >
                    {square}
                 </Square>
-
               )
             })
           }
